@@ -1,0 +1,514 @@
+sudo perf stat  -e branch-instructions,branch-misses,bus-cycles,cache-misses,cache-references,cpu-cycles,instructions,ref-cycles,L1-dcache-load-misses,L1-dcache-loads,L1-dcache-stores,L1-icache-load-misses,LLC-load-misses,LLC-loads,LLC-store-misses,LLC-stores,branch-load-misses,branch-loads,dTLB-load-misses,dTLB-loads,dTLB-store-misses,dTLB-stores,iTLB-load-misses,iTLB-loads,node-load-misses,node-loads,node-store-misses,node-stores,fp_assist.any   -d -d -d -a sleep 0.25
+
+sudo perf stat -M DSB_Coverage,GFLOPs,IFetch_Line_Utilization,DSB_Coverage,MLP,Load_Miss_Real_Latency,CPI,ILP,UPI,ILP,C2_Pkg_Residency,Turbo_Utilization,Page_Walks_Utilization,CORE_CLKS,CoreIPC,CPU_Utilization,Kernel_Utilization,Page_Walks_Utilization,SLOTS,IPC,BAClear_Cost -a sleep 1
+
+
+sudo perf stat  -e branch-instructions,branch-misses,bus-cycles,cache-misses,cache-references,cpu-cycles,instructions,ref-cycles,L1-dcache-load-misses,L1-dcache-loads,L1-dcache-stores,L1-icache-load-misses,LLC-load-misses,LLC-loads,LLC-store-misses,LLC-stores,branch-load-misses,branch-loads,dTLB-load-misses,dTLB-loads,dTLB-store-misses,dTLB-stores,iTLB-load-misses,iTLB-loads,node-load-misses,node-loads,node-store-misses,node-stores,fp_assist.any   -d -d -d -a sleep 0.25
+
+perf event:
+
+must show need -d -d -d  cmd:
+(1) L1-dcache-loads
+(2) L1-dcache-load-misses     
+(3) LLC-loads
+(4) LLC-load-misses           
+(5) L1-icache-loads                                             
+(6) L1-icache-load-misses
+(7) dTLB-loads
+(8) dTLB-load-misses
+(9) iTLB-loads
+(10) iTLB-load-misses 
+(11) L1-dcache-prefetches                                        
+(12) L1-dcache-prefetch-misses  
+
+general:
+(1) cpu-cycles
+(2) instructions
+(3) bus-cycles
+(4) ref-cycles
+(5) cache-misses
+(6) cache-references
+(5) branch-instructions
+(6) branch-misses
+
+floating_point:
+(1) fp_arith_inst_retired.128b_packed_double
+(2) fp_arith_inst_retired.128b_packed_single
+(3) fp_arith_inst_retired.256b_packed_double
+(4) fp_arith_inst_retired.256b_packed_single
+(5) fp_arith_inst_retired.scalar_double
+(6) fp_arith_inst_retired.scalar_single
+(7) fp_assist.any
+
+cache:
+(1) l1d.replacement                                   
+(2) l1d_pend_miss.fb_full                             
+(3) l1d_pend_miss.pending                             
+(4) l1d_pend_miss.pending_cycles                      
+(5) l1d_pend_miss.pending_cycles_any                  
+(6) l2_lines_in.all                                   
+(7) l2_lines_out.non_silent                           
+(8) l2_lines_out.silent                               
+(9) l2_lines_out.useless_hwpf                         
+(10) l2_lines_out.useless_pref                         
+(11) l2_rqsts.all_code_rd                              
+(12) l2_rqsts.all_demand_data_rd                       
+(13) l2_rqsts.all_demand_miss                          
+(14) l2_rqsts.all_demand_references                    
+(15) l2_rqsts.all_pf                                   
+(16) l2_rqsts.all_rfo                                  
+(17) l2_rqsts.code_rd_hit                              
+(18) l2_rqsts.code_rd_miss                             
+(19) l2_rqsts.demand_data_rd_hit                       
+(20) l2_rqsts.demand_data_rd_miss                      
+(21) l2_rqsts.miss                                     
+(22) l2_rqsts.pf_hit                                   
+(23) l2_rqsts.pf_miss                                  
+(24) l2_rqsts.references                               
+(25) l2_rqsts.rfo_hit                                  
+(26) l2_rqsts.rfo_miss                                 
+(27) l2_trans.l2_wb                                    
+(28) longest_lat_cache.miss                            
+(29) longest_lat_cache.reference                       
+(30) mem_inst_retired.all_loads                        
+(31) mem_inst_retired.all_stores                       
+(32) mem_inst_retired.lock_loads                       
+(33) mem_inst_retired.split_loads                      
+(34) mem_inst_retired.split_stores                     
+(35) mem_inst_retired.stlb_miss_loads                  
+(36) mem_inst_retired.stlb_miss_stores                 
+(37) mem_load_l3_hit_retired.xsnp_hit                  
+(38) mem_load_l3_hit_retired.xsnp_hitm                 
+(39) mem_load_l3_hit_retired.xsnp_miss                 
+(40) mem_load_l3_hit_retired.xsnp_none                 
+(41) mem_load_misc_retired.uc                          
+(42) mem_load_retired.fb_hit                           
+(43) mem_load_retired.l1_hit                           
+(44) mem_load_retired.l1_miss                          
+(45) mem_load_retired.l2_hit                           
+(46) mem_load_retired.l2_miss                          
+(47) mem_load_retired.l3_hit                           
+(48) mem_load_retired.l3_miss                          
+(49) offcore_requests.all_data_rd                      
+(50) offcore_requests.all_requests                     
+(51) offcore_requests.demand_code_rd                   
+(52) offcore_requests.demand_data_rd                   
+(53) offcore_requests.demand_rfo                       
+(54) offcore_requests_buffer.sq_full                   
+(55) offcore_requests_outstanding.all_data_rd          
+(56) offcore_requests_outstanding.cycles_with_data_rd  
+(57) offcore_requests_outstanding.cycles_with_demand_code_rd
+(58) offcore_requests_outstanding.cycles_with_demand_data_rd
+(59) offcore_requests_outstanding.cycles_with_demand_rfo
+(60) offcore_requests_outstanding.demand_code_rd       
+(61) offcore_requests_outstanding.demand_data_rd       
+(62) offcore_requests_outstanding.demand_data_rd_ge_6  
+(63) offcore_requests_outstanding.demand_rfo           
+(64) offcore_response                                  
+(65) offcore_response.demand_data_rd.any_response      
+(66) offcore_response.demand_data_rd.l3_hit.any_snoop  
+(67) offcore_response.demand_data_rd.l3_hit.snoop_hit_no_fwd
+(68) offcore_response.demand_data_rd.l3_hit.snoop_hitm 
+(69) offcore_response.demand_data_rd.l3_hit.snoop_miss 
+(70) offcore_response.demand_data_rd.l3_hit.snoop_none 
+(71) offcore_response.demand_data_rd.l3_hit.snoop_not_needed
+(72) offcore_response.demand_data_rd.l4_hit_local_l4.any_snoop
+(73) offcore_response.demand_data_rd.l4_hit_local_l4.snoop_hit_no_fwd
+(74) offcore_response.demand_data_rd.l4_hit_local_l4.snoop_hitm
+(75) offcore_response.demand_data_rd.l4_hit_local_l4.snoop_miss
+(76) offcore_response.demand_data_rd.l4_hit_local_l4.snoop_none
+(77) offcore_response.demand_data_rd.l4_hit_local_l4.snoop_not_needed
+(78) offcore_response.demand_data_rd.supplier_none.any_snoop
+(79) offcore_response.demand_data_rd.supplier_none.snoop_hit_no_fwd
+(80) offcore_response.demand_data_rd.supplier_none.snoop_hitm
+(81) offcore_response.demand_data_rd.supplier_none.snoop_miss
+(82) offcore_response.demand_data_rd.supplier_none.snoop_none
+(83) offcore_response.demand_data_rd.supplier_none.snoop_not_needed
+(84) sq_misc.split_lock                                
+
+frontend:
+(1) dsb2mite_switches.penalty_cycles
+(2) frontend_retired.dsb_miss 
+(3) frontend_retired.itlb_miss
+(4) frontend_retired.l1i_miss
+(5) frontend_retired.l2_miss
+(6) frontend_retired.latency_ge_128
+(7) frontend_retired.latency_ge_16
+(8) frontend_retired.latency_ge_2
+(9) frontend_retired.latency_ge_256 
+(10) frontend_retired.latency_ge_2_bubbles_ge_1
+(11) frontend_retired.latency_ge_2_bubbles_ge_2
+(12) frontend_retired.latency_ge_2_bubbles_ge_3
+(13) frontend_retired.latency_ge_32
+(14) frontend_retired.latency_ge_4
+(15) frontend_retired.latency_ge_512  
+(16) frontend_retired.latency_ge_64 
+(17) frontend_retired.latency_ge_8
+(18) frontend_retired.stlb_miss
+(19) icache_16b.ifdata_stall
+(20) icache_64b.iftag_hit
+(21) icache_64b.iftag_miss
+(22) icache_64b.iftag_stall
+(23) idq.all_dsb_cycles_4_uops 
+(24) idq.all_dsb_cycles_any_uops
+(25) idq.all_mite_cycles_4_uops
+(26) idq.all_mite_cycles_any_uops
+(27) idq.dsb_cycles
+(28) idq.dsb_uops
+(29) idq.mite_cycles
+(30) idq.mite_uops
+(31) idq.ms_cycles 
+(32) idq.ms_dsb_cycles
+(33) idq.ms_mite_uops
+(34) idq.ms_switches
+(35) idq.ms_uops
+(36) idq_uops_not_delivered.core
+(37) idq_uops_not_delivered.cycles_0_uops_deliv.core
+(38) idq_uops_not_delivered.cycles_fe_was_ok
+(39) idq_uops_not_delivered.cycles_le_1_uop_deliv.core
+(40) idq_uops_not_delivered.cycles_le_2_uop_deliv.core
+(41) idq_uops_not_delivered.cycles_le_3_uop_deliv.core
+
+
+memory:
+(1) cycle_activity.cycles_l3_miss 
+(2) cycle_activity.stalls_l3_miss
+(3) hle_retired.aborted
+(4) hle_retired.aborted_events
+(5) hle_retired.aborted_mem
+(6) hle_retired.aborted_memtype
+(7) hle_retired.aborted_timer
+(8) hle_retired.aborted_unfriendly
+(9) hle_retired.commit
+(10) hle_retired.start
+(11) machine_clears.memory_ordering
+(12) mem_trans_retired.load_latency_gt_128
+(13) mem_trans_retired.load_latency_gt_16
+(14) mem_trans_retired.load_latency_gt_256
+(15) mem_trans_retired.load_latency_gt_32
+(16) mem_trans_retired.load_latency_gt_4
+(17) mem_trans_retired.load_latency_gt_512 
+(18) mem_trans_retired.load_latency_gt_64
+(19) mem_trans_retired.load_latency_gt_8
+(20) offcore_requests.l3_miss_demand_data_rd
+(21) offcore_requests_outstanding.cycles_with_l3_miss_demand_data_rd
+(22) offcore_requests_outstanding.l3_miss_demand_data_rd
+(24) offcore_requests_outstanding.l3_miss_demand_data_rd_ge_6
+(25) offcore_response.demand_data_rd.l3_miss.any_snoop 
+(26) offcore_response.demand_data_rd.l3_miss.snoop_hit_no_fwd
+(27) offcore_response.demand_data_rd.l3_miss.snoop_hitm
+(28) offcore_response.demand_data_rd.l3_miss.snoop_miss
+(29) offcore_response.demand_data_rd.l3_miss.snoop_none
+(30) offcore_response.demand_data_rd.l3_miss.snoop_not_needed
+(31) offcore_response.demand_data_rd.l3_miss_local_dram.any_snoop
+(32) offcore_response.demand_data_rd.l3_miss_local_dram.snoop_hit_no_fwd
+(33) offcore_response.demand_data_rd.l3_miss_local_dram.snoop_hitm
+(34) offcore_response.demand_data_rd.l3_miss_local_dram.snoop_miss
+(35) offcore_response.demand_data_rd.l3_miss_local_dram.snoop_none
+(36) offcore_response.demand_data_rd.l3_miss_local_dram.snoop_not_needed
+(37) rtm_retired.aborted                               
+(38) rtm_retired.aborted_events                        
+(39) rtm_retired.aborted_mem                           
+(40) rtm_retired.aborted_memtype                       
+(41) rtm_retired.aborted_timer                         
+(42) rtm_retired.aborted_unfriendly                    
+(43) rtm_retired.commit                                
+(44) rtm_retired.start                                 
+(45) tx_exec.misc1                                     
+(46) tx_exec.misc2                                     
+(47) tx_exec.misc3                                     
+(48) tx_exec.misc4                                     
+(49) tx_exec.misc5                                     
+(50) tx_mem.abort_capacity                             
+(51) tx_mem.abort_conflict                             
+(52) tx_mem.abort_hle_elision_buffer_mismatch          
+(53) tx_mem.abort_hle_elision_buffer_not_empty         
+(54) tx_mem.abort_hle_elision_buffer_unsupported_alignment
+(55) tx_mem.abort_hle_store_to_elided_lock             
+(56) tx_mem.hle_elision_buffer_full                    
+
+other:
+(1) hw_interrupts.received                            
+(2) sw_prefetch_access.nta                            
+(3) sw_prefetch_access.prefetchw                      
+(4) sw_prefetch_access.t0                             
+(5) sw_prefetch_access.t1_t2                          
+
+
+pipeline:
+(1) arith.divider_active                              
+(2) baclears.any                                      
+(3) br_inst_retired.all_branches                      
+(4) br_inst_retired.all_branches_pebs                 
+(5) br_inst_retired.conditional                       
+(6) br_inst_retired.far_branch                        
+(7) br_inst_retired.near_call                         
+(8) br_inst_retired.near_return                       
+(9) br_inst_retired.near_taken                        
+(10) br_inst_retired.not_taken                         
+(11) br_misp_retired.all_branches                      
+(12) br_misp_retired.all_branches_pebs                 
+(13) br_misp_retired.conditional                       
+(14) br_misp_retired.near_call                         
+(15) br_misp_retired.near_taken                        
+(16) cpu_clk_thread_unhalted.one_thread_active         
+(17) cpu_clk_thread_unhalted.ref_xclk                  
+(18) cpu_clk_thread_unhalted.ref_xclk_any              
+(19) cpu_clk_unhalted.one_thread_active                
+(20) cpu_clk_unhalted.ref_tsc                          
+(21) cpu_clk_unhalted.ref_xclk                         
+(22) cpu_clk_unhalted.ref_xclk_any                     
+(23) cpu_clk_unhalted.ring0_trans                      
+(24) cpu_clk_unhalted.thread                           
+(25) cpu_clk_unhalted.thread_any                       
+(26) cpu_clk_unhalted.thread_p                         
+(27) cpu_clk_unhalted.thread_p_any                     
+(28) cycle_activity.cycles_l1d_miss                    
+(29) cycle_activity.cycles_l2_miss                     
+(30) cycle_activity.cycles_mem_any                     
+(31) cycle_activity.stalls_l1d_miss                    
+(32) cycle_activity.stalls_l2_miss                     
+(33) cycle_activity.stalls_mem_any                     
+(34) cycle_activity.stalls_total                       
+(35) exe_activity.1_ports_util                         
+(36) exe_activity.2_ports_util                         
+(37) exe_activity.3_ports_util                         
+(38) exe_activity.4_ports_util                         
+(39)exe_activity.bound_on_stores                      
+(40) exe_activity.exe_bound_0_ports                    
+(41) ild_stall.lcp                                     
+(42) inst_retired.any                                  
+(43)inst_retired.any_p                                
+(44) inst_retired.prec_dist                            
+(45) inst_retired.total_cycles_ps                      
+(46) int_misc.clear_resteer_cycles                     
+(47) int_misc.recovery_cycles                          
+(48) int_misc.recovery_cycles_any                      
+(49) ld_blocks.no_sr                                   
+(50) ld_blocks.store_forward                           
+(51) ld_blocks_partial.address_alias                   
+(52) load_hit_pre.sw_pf                                
+(53) lsd.cycles_4_uops                                 
+(56) lsd.cycles_active                                 
+(57) lsd.uops                                          
+(58) machine_clears.count                              
+(59) machine_clears.smc                                
+(60) other_assists.any                                 
+(61) resource_stalls.any                               
+(62) resource_stalls.sb                                
+(63) rob_misc_events.lbr_inserts                       
+(64) rs_events.empty_cycles                            
+(65) rs_events.empty_end                               
+(66) uops_dispatched_port.port_0                       
+(67) uops_dispatched_port.port_1                       
+(68) uops_dispatched_port.port_2                       
+(69) uops_dispatched_port.port_3                       
+(70) uops_dispatched_port.port_4                       
+(71) uops_dispatched_port.port_5                       
+(72) uops_dispatched_port.port_6                       
+(73) uops_dispatched_port.port_7                       
+(74) uops_executed.core                                
+(75) uops_executed.core_cycles_ge_1                    
+(76) uops_executed.core_cycles_ge_2                    
+(77) uops_executed.core_cycles_ge_3                    
+(78) uops_executed.core_cycles_ge_4                    
+(79) uops_executed.core_cycles_none                    
+(80) uops_executed.cycles_ge_1_uop_exec                
+(81) uops_executed.cycles_ge_2_uops_exec               
+(82) uops_executed.cycles_ge_3_uops_exec               
+(83) uops_executed.cycles_ge_4_uops_exec               
+(84) uops_executed.stall_cycles                        
+(85) uops_executed.thread                              
+(86) uops_executed.x87                                 
+(87) uops_issued.any                                   
+(88) uops_issued.slow_lea                              
+(89) uops_issued.stall_cycles                          
+(90) uops_issued.vector_width_mismatch                 
+(91) uops_retired.retire_slots                         
+(92) uops_retired.stall_cycles                         
+(93) uops_retired.total_cycles  
+(94) cpu_clk_unhalted.ref_tsc:u                       
+
+uncore:
+(1) unc_arb_coh_trk_requests.all                      
+(2) unc_arb_trk_occupancy.all                         
+(3) unc_arb_trk_occupancy.cycles_with_any_request     
+(4) unc_arb_trk_requests.all                          
+(5) unc_arb_trk_requests.drd_direct                   
+(6) unc_arb_trk_requests.writes                       
+(7) unc_cbo_cache_lookup.any_es                       
+(8) unc_cbo_cache_lookup.any_i                        
+(9) unc_cbo_cache_lookup.any_m                        
+(10) unc_cbo_cache_lookup.any_mesi                     
+(11) unc_cbo_cache_lookup.read_es                      
+(12) unc_cbo_cache_lookup.read_i                       
+(13) unc_cbo_cache_lookup.read_mesi                    
+(14) unc_cbo_cache_lookup.write_es                     
+(15) unc_cbo_cache_lookup.write_m                      
+(16) unc_cbo_cache_lookup.write_mesi                   
+(17) unc_cbo_xsnp_response.hit_xcore                   
+(18) unc_cbo_xsnp_response.hitm_xcore                  
+(19) unc_cbo_xsnp_response.miss_eviction               
+(20) unc_cbo_xsnp_response.miss_xcore                  
+
+
+virtual memory:
+(1) dtlb_load_misses.miss_causes_a_walk               
+(2) dtlb_load_misses.stlb_hit                         
+(3) dtlb_load_misses.walk_active                      
+(4) dtlb_load_misses.walk_completed                   
+(5) dtlb_load_misses.walk_completed_1g                
+(6) dtlb_load_misses.walk_completed_2m_4m             
+(7) dtlb_load_misses.walk_completed_4k                
+(8) dtlb_load_misses.walk_pending                     
+(9) dtlb_store_misses.miss_causes_a_walk              
+(10) dtlb_store_misses.stlb_hit                        
+(11) dtlb_store_misses.walk_active                     
+(12) dtlb_store_misses.walk_completed                  
+(13) dtlb_store_misses.walk_completed_1g               
+(14) dtlb_store_misses.walk_completed_2m_4m            
+(15) dtlb_store_misses.walk_completed_4k               
+(16) dtlb_store_misses.walk_pending                    
+(17) ept.walk_pending                                  
+(18) itlb.itlb_flush                                   
+(19) itlb_misses.miss_causes_a_walk                    
+(20) itlb_misses.stlb_hit                              
+(21) itlb_misses.walk_active                           
+(22) itlb_misses.walk_completed                        
+(23) itlb_misses.walk_completed_1g                     
+(24) itlb_misses.walk_completed_2m_4m                  
+(25) itlb_misses.walk_completed_4k                     
+(26) itlb_misses.walk_pending                          
+(27) tlb_flush.dtlb_thread                             
+(28) tlb_flush.stlb_any                                
+
+
+Metric Groups:
+
+DSB:
+  DSB_Coverage
+       [Fraction of Uops delivered by the DSB (aka Decoded Icache; or Uop Cache)]
+FLOPS:
+  GFLOPs
+       [Giga Floating Point Operations Per Second]
+Frontend:
+  IFetch_Line_Utilization
+       [Rough Estimation of fraction of fetched lines bytes that were likely consumed by program instructions]
+Frontend_Bandwidth:
+  DSB_Coverage
+       [Fraction of Uops delivered by the DSB (aka Decoded Icache; or Uop Cache)]
+Memory_BW:
+  MLP
+       [Memory-Level-Parallelism (average number of L1 miss demand load when there is at least 1 such miss)]
+Memory_Bound:
+  Load_Miss_Real_Latency
+       [Actual Average Latency for L1 data-cache miss demand loads]
+  MLP
+       [Memory-Level-Parallelism (average number of L1 miss demand load when there is at least 1 such miss)]
+Memory_Lat:
+  Load_Miss_Real_Latency
+       [Actual Average Latency for L1 data-cache miss demand loads]
+Pipeline:
+  CPI
+       [Cycles Per Instruction (threaded)]
+  ILP
+       [Instruction-Level-Parallelism (average number of uops executed when there is at least 1 uop executed)]
+  UPI
+       [Uops Per Instruction]
+Ports_Utilization:
+  ILP
+       [Instruction-Level-Parallelism (average number of uops executed when there is at least 1 uop executed)]
+Power:
+  C2_Pkg_Residency
+       [C2 residency percent per package]
+  C3_Core_Residency
+       [C3 residency percent per core]
+  C3_Pkg_Residency
+       [C3 residency percent per package]
+  C6_Core_Residency
+       [C6 residency percent per core]
+  C6_Pkg_Residency
+       [C6 residency percent per package]
+  C7_Core_Residency
+       [C7 residency percent per core]
+  C7_Pkg_Residency
+       [C7 residency percent per package]
+  Turbo_Utilization
+       [Average Frequency Utilization relative nominal frequency]
+SMT:
+  CORE_CLKS
+       [Core actual clocks when any thread is active on the physical core]
+  CoreIPC
+       [Instructions Per Cycle (per physical core)]
+  SMT_2T_Utilization
+       [Fraction of cycles where both hardware threads were active]
+Summary:
+  CLKS
+       [Per-thread actual clocks when the logical processor is active. This is called 'Clockticks' in VTune]
+  CPI
+       [Cycles Per Instruction (threaded)]
+  CPU_Utilization
+       [Average CPU Utilization]
+  GFLOPs
+       [Giga Floating Point Operations Per Second]
+  Instructions
+       [Total number of retired Instructions]
+  Kernel_Utilization
+       [Fraction of cycles spent in Kernel mode]
+  SMT_2T_Utilization
+       [Fraction of cycles where both hardware threads were active]
+TLB:
+  Page_Walks_Utilization
+       [Utilization of the core's Page Walker(s) serving STLB misses triggered by instruction/Load/Store accesses]
+TopDownL1:
+  IPC
+       [Instructions Per Cycle (per logical thread)]
+  SLOTS
+       [Total issue-pipeline slots]
+Unknown_Branches:
+  BAClear_Cost
+       [Average Branch Address Clear Cost (fraction of cycles)]
+
+(1) idq.dsb_uops              #      0.9 DSB_Coverage             (9.09%)
+(2) lsd.uops                                                      (9.09%)
+(3) idq.mite_uops                                                 (9.09%)
+(4) idq.ms_uops                                                   (9.09%)
+(5) fp_arith_inst_retired.scalar_single #      2.6 GFLOPs                   (4.79%)
+(6) fp_arith_inst_retired.scalar_double                                     (4.79%)
+(7) fp_arith_inst_retired.128b_packed_double                                     (4.79%)
+(8) fp_arith_inst_retired.128b_packed_single                                     (4.79%)
+(9) fp_arith_inst_retired.256b_packed_double                                     (4.79%)
+(10) fp_arith_inst_retired.256b_packed_single                                     (4.79%)
+(11) uops_issued.any           #      0.7 IFetch_Line_Utilization  (4.79%)
+(12) uops_retired.retire_slots                                     (4.79%)
+(13) inst_retired.any                                              (4.79%)
+(15) icache_64b.iftag_hit                                          (4.79%)
+(16) icache_64b.iftag_miss                                         (4.79%)
+(17) l1d_pend_miss.pending     #      1.8 MLP                      (9.57%)
+(18) l1d_pend_miss.pending_cycles_any                                     (9.57%)
+(19) l1d_pend_miss.pending_cycles                                     (9.57%)
+(20) l1d_pend_miss.pending     #     26.8 Load_Miss_Real_Latency   (9.57%)
+(21) mem_load_retired.l1_miss                                      (9.57%)
+(22) mem_load_retired.fb_hit                                       (9.57%)
+(23) cycles                                                        (14.36%)
+(24) uops_executed.thread      #      2.5 ILP                      (14.36%)
+(25) uops_executed.core_cycles_ge_1                                     (14.36%)
+(26) uops_retired.retire_slots #      1.1 UPI                      (19.14%)
+(27) cstate_pkg/c2-residency/  #      0.0 C2_Pkg_Residency       
+(28) msr/tsc/                                                    
+(29) cpu_clk_unhalted.thread   #      1.1 Turbo_Utilization        (23.93%)
+(30) cpu_clk_unhalted.ref_tsc                                      (23.93%)
+(31) itlb_misses.walk_pending  #      0.2 Page_Walks_Utilization   (9.57%)
+(32) dtlb_load_misses.walk_pending                                     (9.57%)
+(33) dtlb_store_misses.walk_pending                                     (9.57%)
+(34) ept.walk_pending                                              (9.57%)
+(35) cpu_clk_unhalted.thread_any                                     (9.57%)
+(37) rs_events.empty_cycles    #    144.4 BAClear_Cost             (14.20%)
+(38) icache_16b.ifdata_stall                                       (14.20%)
+(39) icache_64b.iftag_stall                                        (14.20%)
+(40) rs_events.empty_end                                           (14.20%)
+(41) cpu_clk_unhalted.ref_tsc:u 
+
+
+
+
