@@ -81,9 +81,9 @@ core_event_config_dic = {}
 uncore_event_config_dic = {}
 event_result_dic = {}
 os.system("sudo modprobe msr")
-os.system("gcc zxpower.c -o aa")
+
+sample_interval= float(sys.argv[1])
 loopcount = 0
-samplecount = int(sys.argv[1])
 '''
 change scale
 '''
@@ -291,7 +291,7 @@ def ProcessNoFixedPMC():
         WrmsrCmd(-1,IA32_MSR_UNCORE_PMC3,0x0,0x0)
 
         ## set sample time 
-        time.sleep(0.2)
+        time.sleep(sample_interval)
 
         ## get pmc conter
         # core
@@ -339,17 +339,16 @@ def SavePMCResultToTxt():
             #print(pmckey + ":" + str(decvalue))
             file_write.write(pmckey + ":" + str(decvalue) + "\n")
 
-def SavePOWERResultToTxt():
-    outfilename = "powerout%d.txt"%(loopcount)
-    os.system("{} {}".format("rm -rf", outfilename))
-    powerresult = ExecCmdGetTernal("sudo ./aa")
-    with open(outfilename, 'a+') as file_write:
-        file_write.write(powerresult + "\n")   
+
 
 if __name__ == '__main__':
     GetEventConfig()
-    while loopcount < samplecount:
+    loopcount = 0
+    while True:
+        loopcount = loopcount + 1
         ProcessNoFixedPMC()
         SavePMCResultToTxt()
-        SavePOWERResultToTxt()
-        loopcount = loopcount + 1
+        if loopcount == 10:
+            break
+        
+
